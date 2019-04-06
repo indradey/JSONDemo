@@ -1,0 +1,66 @@
+<div class="main-container">
+  <h1>Welcome to the Page</h1>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-4">
+        <select class="form-control" [(ngModel)]="_CompetencyDropDown">
+          <option *ngFor="let comp of _competencyList" [ngValue]="comp.id">
+            {{comp.name}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <button type="button" class="btn btn-success" (click)="fnAddCompetency()">
+          Add Competency
+        </button>
+      </div>
+    </div>
+    <br />
+    <div class="row col-sm-12">
+      <table class="table">
+        <thead>
+          <th>Competency</th>
+          <th>Band Details</th>
+        </thead>
+        <tr *ngFor="let comp of competencyArray">
+          <td> {{comp.name}}</td>
+          <td>
+            <div class="row" *ngFor="let band of comp?.bands">
+              <div class="col-sm-3">
+                id: &nbsp;
+                <input type="text" class="form-control" [(ngModel)]="band.id">
+              </div>
+              <div class="col-sm-3">
+                name: &nbsp;
+                <input type="text" class="form-control" [(ngModel)]="band.name">
+              </div>
+              <div class="col-sm-3">
+                value: &nbsp;
+                <input type="text" class="form-control" [(ngModel)]="band.value">
+              </div>
+              <div class="col-sm-3">
+                <button class="btn btn-danger" (click)="Delete(band)"> Delete</button>
+              </div>
+            </div>
+            <br />
+            <div class="row col-sm-12" style="text-align:right">
+              <button type="button" class="btn btn-primary" (click)="AddBandToCompetency(comp)">
+                Add Bands
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br />
+    <div class="row col-sm-12">
+      <button type="button" class="btn btn-primary" (click)="fnSaveData()">
+        Save Data
+      </button>
+    </div>
+    <br/>
+    <div class="row col-sm-12">
+      {{ jsonData }}
+    </div>
+  </div>
+</div>
